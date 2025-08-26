@@ -9,6 +9,7 @@ Objects in Collections – Storing multiple data types together in a single list
 The goal of this project is to integrate these features into one application to show how they work together in real-world programming scenarios.
 
 **Features**
+
 Displays tabular data using parallel arrays
 Uses enhanced for loops for improved code readability
 Demonstrates string splitting using different delimiters
