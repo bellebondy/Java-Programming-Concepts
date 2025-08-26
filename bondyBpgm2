@@ -1,0 +1,289 @@
+/*********************************************************************
+ Author    : Belle Bondy
+ Course    : Java section. Java-3 --> COP 3804
+ Professor : Michael Robinson 
+ Program # : Program Purpose/Description 
+             { This program uses the tools from Chapter 7 and 8 (parallel arrays, enhanced for 
+               for loops, string splitting, and ArrayLists). Each method handles a specific part
+               of the assignment to show how these concepts work in Java. }
+
+ Due Date  : 06/18/2025
+
+
+ Certification: 
+ I hereby certify that this work is my own and none of it is the work of any other person. 
+
+ ..........{ Belle Bondy }..........
+*********************************************************************/
+
+import java.util.ArrayList;
+
+public class bondyBpgm2 
+{
+
+    // This method will print the given data, formatted, in a parallel array
+    public static void parallel( int carsWeight[], String owner[], double totalMiles[] )
+    {
+
+        // Print a title before showing the table
+        System.out.printf( "\n\nUsing a Parallel Array to print display the information:\n" );
+
+        int k;
+
+        for ( k = 0 ; k < carsWeight.length ; k = k + 1 )
+        {
+
+            // Show owner name, car weight, and miles in one line
+            System.out.printf( "Owner: %-15s | Cars Weight: %6d lbs | Total Miles: %7.2f miles\n", owner[k], carsWeight[k], totalMiles[k] );
+
+        } // End of for loop
+
+    } // End of public static void parallel( int carsWeight[], String owner[], double totalMiles[] )
+
+
+    // ENHANCED FOR LOOP
+    // This method goes through different object arrays and prints what is inside
+    // This method uses enhanced for loops to print different types of arrays
+    public static void theEnhancedForLoop ( Object[] objectArray )
+    {
+        // Printing header
+        System.out.printf("\n\nUsing Enhanced For Loops to show each element:\n");
+
+        // Loop through each object in the array
+        for ( Object element : objectArray )
+        {
+            // If it's an int array, print each int
+            if (element instanceof int[])
+            {
+
+                // Loop through each int in the array
+                for (int value : (int[]) element)
+                {
+
+                    System.out.printf(" %d\n", value);
+
+                }
+
+            }
+
+            // If it's a String array, print each String
+            else if (element instanceof String[])
+            {
+
+                // Loop through each String in the array
+                for (String value : (String[]) element)
+                {
+
+                    System.out.printf(" %s\n", value);
+
+                }
+            }
+
+            // If it's a double array, print each double
+            else if (element instanceof double[])
+            {
+
+                // Loop through each double in the array
+                for (double value : (double[]) element)
+                {
+
+                    System.out.printf(" %.2f\n", value);
+
+                } // End of for (double value : (double[]) element)
+
+            } // End of else if (element instanceof double[])
+
+            // Catch anything unexpected
+            else
+            {
+
+                System.out.printf(" Unknown type: %s\n", element);
+
+            } // End of else 
+
+        } // End of for ( Object element : objectArray )
+
+    } // End of public static void theEnhancedForLoop ( Object[] objectArray )
+
+
+    // This shows string splitting using the split method
+    public static void tokens ()
+    {
+
+        // Displaying header
+        System.out.printf("\n\nTokenizing Strings: \n");
+
+        // (1)
+        // Display the following string separated by [$%*&]
+
+        // Creating the first string
+        String string1 = "Jill$Billy%Becky*Tara&Mary";
+
+        // Display the heading with the string1 values
+        System.out.printf("\nSplitting %s delimited by $%%*&\n", string1);     
+
+        // Using the split method of the String class.
+        // Break the string wherever it finds one of those symbols
+        String tokens1[] = string1.split( "[$%*&]" );
+
+        // Here we display each word in the tokens1 array using an enhanced for loop
+        for ( String p : tokens1 )
+        {
+
+            System.out.printf( "\t%s\n  ", p );
+
+        } // End of for ( String p : tokens1 )
+
+        // (2)
+        // Display the following string separated by [:.]
+
+        // Creating the second string
+        String string2 = "http://gaddisbooks.com";
+
+        // Display the heading with the string2 values
+        System.out.printf("\n\nSplitting %s delimited by [:.]\n", string2);
+
+        // Using the split method of the String class
+        // This splits it by colons and periods
+        String tokens2[] = string2.split( "[:.]" );
+        
+        // Here we display each word in the tokens2 array
+        for ( String w : tokens2 )
+        {
+
+            System.out.printf( "\t%s\n", w );
+
+        } // End of for ( String w : tokens2 )
+
+        // (3)
+        // Display the following string separated by spaces
+
+        // Creating the third string
+        String string3 = "blue one red three yellow";
+
+        // Display the heading with the string3 values
+        System.out.printf( "\n\nSplitting %s delimited by a space.\n", string3 );
+
+        // Using the split method of the String class.
+        // Split it at every space
+        String tokens3[] = string3.split( " " );
+        
+        // Here we display each word in the tokens3 array
+        for ( String m : tokens3 )
+        {
+
+            System.out.printf( "\t%s\n", m );
+
+        } // End for ( String s : tokens3 )
+
+        System.out.printf( "\n\n" );
+
+    } // End of public static void tokens ( owner[] )
+
+
+    // Method that will show how to use an ArrayList to add/remove data
+    public static void theArrayList()
+    {
+
+        // Creating the ArrayList that can hold anything (ints, Strings, etc)
+        ArrayList<Object> theList = new ArrayList<Object>();
+
+        // Adding the data to the list using .add
+        theList.add( 123 );
+        theList.add( "Java" );
+        theList.add( 3.75 );
+        theList.add( "Fall C" );
+        theList.add( 2099 );
+
+        // Printing header
+        System.out.printf( "Displaying the data in theList data structure.\n" );
+
+        // Display everything I just added into theList using an enhanced for loop 
+        for ( Object obj : theList )
+        {
+
+            System.out.printf( "\t%s\n", obj.toString() );
+
+        } // End of for ( Object obj : theList )
+
+        System.out.print( "\n\n");
+
+        // Deleting the second and fifth records from theList data structure using .remove (index starts at 0)
+        // Doing it in reverse order because if done .remove(1) and then .remove(4) then the array would shift
+        // and then the .remove(4) would be out of bounds
+        theList.remove(4);
+        theList.remove(1);
+
+        // Display the newly updated list after removing the second and fifth records using an enhanced for loop
+        System.out.printf( "Displaying the updated data in theList data structure.\n" );
+
+        for ( Object obj : theList )
+        {
+
+            System.out.printf( "\t%s\n", obj.toString() );
+
+        } // End of for ( Object obj : theList)
+
+    } // End of public static void theArrayList()
+
+
+    // Method that stores a bunch of mixed data into an ArrayList and prints it
+    public static void theObjects( int one, String two, float three, float four, String five, String six, int seven )
+    {
+
+        // Creating an ArrayList of Object type
+        ArrayList<Object> theObjectList = new ArrayList<Object>();
+
+        // Add each input into the list using .add
+        theObjectList.add( one );
+        theObjectList.add( two );
+        theObjectList.add( three );
+        theObjectList.add( four );
+        theObjectList.add( five );
+        theObjectList.add( six );
+        theObjectList.add( seven );
+
+        // Printing a heading
+        System.out.printf( "\n\nDisplaying the data inside theObjectList.\n" );
+
+        // Looping through and displaying each item
+        for ( Object obj : theObjectList )
+        {
+
+            System.out.printf( "\t%s\n", obj.toString() );
+
+        } // End of for ( Object obj : theObjectList )
+
+        System.out.printf( "\n\n" );
+
+    } // End of public static void theObjects()
+
+
+    // Main method that stores all initial given information and where everything runs
+    public static void main ( String[] args )
+    {
+        // Creates single arrays with values to pass into the methods
+        int carsWeight[] =  { 50102, 23908, 12098 }; //carsWeight   
+        String owner[]      =  { "Michael Hall", "Maria Lopez", "Mo Freeman" }; //owners name       
+        double totalMiles[] =  { 104.45, 232.78, 153.07 }; //total miles
+
+        // Call method parallel
+        parallel( carsWeight, owner, totalMiles );
+
+        // Creating an object array with the 3 original arrays
+        // Then call the enhanced for loop method with this new array
+        Object[] objectArray = { carsWeight, owner, totalMiles };
+        theEnhancedForLoop( objectArray );
+
+        // Call method tokens
+        tokens();
+
+        // Call method theArrayList
+        theArrayList();
+
+        // Call method theObjects
+        theObjects( 1, "one", 1.4f, 0.25f, "COP3804", "Java Language", 100 );
+
+    } // End of public static void main (String[] args)
+
+} // End of public class bondyBpgm2
